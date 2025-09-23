@@ -1,0 +1,15 @@
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\bin\Debug\net8.0\LuckyCrush.Application.deps.json
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\bin\Debug\net8.0\LuckyCrush.Application.dll
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\bin\Debug\net8.0\LuckyCrush.Application.pdb
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\bin\Debug\net8.0\LuckyCrush.Domain.dll
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\bin\Debug\net8.0\LuckyCrush.Domain.pdb
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.csproj.AssemblyReference.cache
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.AssemblyInfoInputs.cache
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.AssemblyInfo.cs
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.csproj.CoreCompileInputs.cache
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCru.21A833A1.Up2Date
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.dll
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\refint\LuckyCrush.Application.dll
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.pdb
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\ref\LuckyCrush.Application.dll

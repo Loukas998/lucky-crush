@@ -1,0 +1,6 @@
+@LuckyCrush.API_HostAddress = http://localhost:5227
+
+GET {{LuckyCrush.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
