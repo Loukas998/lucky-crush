@@ -1,4 +1,6 @@
-﻿namespace LuckyCrush.Application.Wheels.Dtos;
+﻿using LuckyCrush.Application.Prizes.Dtos;
+
+namespace LuckyCrush.Application.Wheels.Dtos;
 
 public class WheelDto
 {
@@ -7,4 +9,5 @@ public class WheelDto
     public DateTime EndTime { get; set; }
     public bool IsActive { get; set; }
     public string Type { get; set; } = default!;
+    public List<PrizeDto> Prizes { get; set; } = [];
 }

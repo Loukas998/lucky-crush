@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using LuckyCrush.Domain.Response;
+using MediatR;
 
 namespace LuckyCrush.Application.Tasks.Commands.TrackUserProgress;
 
-public class TrackUserProgressCommand : IRequest
+public class TrackUserProgressCommand : IRequest<Result>
 {
     public string UserId { get; set; } = string.Empty;
     public int GoalId { get; set; }

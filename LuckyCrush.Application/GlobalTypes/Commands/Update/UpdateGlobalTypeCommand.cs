@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using LuckyCrush.Domain.Response;
+using MediatR;
 
 namespace LuckyCrush.Application.GlobalTypes.Commands.Update;
 
-public class UpdateGlobalTypeCommand : IRequest
+public class UpdateGlobalTypeCommand : IRequest<Result>
 {
     public int GlobalTypeId { get; set; }
     public string TypeName { get; set; } = default!;

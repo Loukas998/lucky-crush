@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using LuckyCrush.Domain.Response;
+using MediatR;
 
 namespace LuckyCrush.Application.Users.Commands.Logout;
 
-public class LogoutCommand : IRequest
+public class LogoutCommand : IRequest<Result>
 {
-    public string Token { get; set; }
+    public string Token { get; set; } = default!;
 }

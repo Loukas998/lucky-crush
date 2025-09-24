@@ -1,9 +1,10 @@
-﻿using MediatR;
+﻿using LuckyCrush.Domain.Response;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 
 namespace LuckyCrush.Application.Prizes.Commands.Update;
 
-public class UpdatePrizeCommand : IRequest
+public class UpdatePrizeCommand : IRequest<Result>
 {
     public int PrizeId { get; set; }
     public int WheelId { get; set; }

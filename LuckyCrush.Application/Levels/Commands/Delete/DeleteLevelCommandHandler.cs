@@ -1,11 +1,12 @@
 ﻿using LuckyCrush.Domain.Repositories;
+using LuckyCrush.Domain.Response;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace LuckyCrush.Application.Levels.Commands.Delete;
 
 public class DeleteLevelCommandHandler(ILogger<DeleteLevelCommandHandler> logger,
-    ILevelRepository levelRepository) : IRequestHandler<DeleteLevelCommand>
+    ILevelRepository levelRepository) : IRequestHandler<DeleteLevelCommand, Result>
 {
     public async Task Handle(DeleteLevelCommand request, CancellationToken cancellationToken)
     {
@@ -13,9 +14,10 @@ public class DeleteLevelCommandHandler(ILogger<DeleteLevelCommandHandler> logger
         var level = await levelRepository.GetLevelWithRequirementAsync(request.LevelId);
         if (level == null)
         {
-
+            return Result.Failure("Level not found");
         }
 
         await levelRepository.DeleteAsync(level);
+        return Result.Success();
     }
 }

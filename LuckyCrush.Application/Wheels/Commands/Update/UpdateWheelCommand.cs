@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using LuckyCrush.Domain.Response;
+using MediatR;
 
 namespace LuckyCrush.Application.Wheels.Commands.Update;
 
-public class UpdateWheelCommand : IRequest
+public class UpdateWheelCommand : IRequest<Result>
 {
     public int WheelId { get; set; }
     public DateTime StartTime { get; set; }

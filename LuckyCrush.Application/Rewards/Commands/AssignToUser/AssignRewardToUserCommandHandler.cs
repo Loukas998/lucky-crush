@@ -1,33 +1,34 @@
 ﻿using LuckyCrush.Domain.Repositories;
+using LuckyCrush.Domain.Response;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace LuckyCrush.Application.Rewards.Commands.AssignToUser;
 
 public class AssignRewardToUserCommandHandler(ILogger<AssignRewardToUserCommandHandler> logger,
-    IAccountRepository accountRepository, ITaskRepository taskRepository, IRewardRepository rewardRepository)
-    : IRequestHandler<AssignRewardToUserCommand>
+    IAccountRepository accountRepository, ITaskRepository taskRepository)
+    : IRequestHandler<AssignRewardToUserCommand, Result>
 {
-    public async Task Handle(AssignRewardToUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(AssignRewardToUserCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Assigning reward to user");
 
         var user = await accountRepository.GetUserWithProgressAsync(request.UserId);
         if (user == null)
         {
-
+            return Result.Failure("User not found");
         }
 
         var task = await taskRepository.GetTaskWithGoals(request.TaskId);
         if (task == null)
         {
-
+            return Result.Failure("Task not found");
         }
 
         var reward = await taskRepository.FindByIdAsync(request.RewardId);
         if (reward == null)
         {
-
+            return Result.Failure("Reward not found");
         }
 
         int taskTarget = task.Goals.Sum(g => g.Target);
@@ -52,5 +53,7 @@ public class AssignRewardToUserCommandHandler(ILogger<AssignRewardToUserCommandH
                 "User {UserId} has not completed task {TaskId}: {Progress}/{Target}",
                 user.Id, task.Id, sum, taskTarget);
         }
+
+        return Result.Success();
     }
 }

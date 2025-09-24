@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using LuckyCrush.Domain.Response;
+using MediatR;
 
 namespace LuckyCrush.Application.Wheels.Commands.Create;
 
-public class CreateWheelCommand : IRequest<int>
+public class CreateWheelCommand : IRequest<Result<int>>
 {
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }

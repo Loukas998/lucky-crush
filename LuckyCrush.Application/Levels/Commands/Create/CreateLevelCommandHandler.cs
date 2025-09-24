@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
 using LuckyCrush.Domain.Entities.Levels;
 using LuckyCrush.Domain.Repositories;
+using LuckyCrush.Domain.Response;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace LuckyCrush.Application.Levels.Commands.Create;
 
 public class CreateLevelCommandHandler(ILogger<CreateLevelCommandHandler> logger, IMapper mapper,
-    ILevelRepository levelRepository) : IRequestHandler<CreateLevelCommand, int>
+    ILevelRepository levelRepository) : IRequestHandler<CreateLevelCommand, Result<int>>
 {
-    public async Task<int> Handle(CreateLevelCommand request, CancellationToken cancellationToken)
+    public async Task<Result<int>> Handle(CreateLevelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating new level with Number {Number}, IsSpecial {IsSpecial}, RequiredStars {Stars}",
             request.Number, request.IsSpecial, request.RequiredStars);
@@ -17,6 +18,6 @@ public class CreateLevelCommandHandler(ILogger<CreateLevelCommandHandler> logger
         var level = mapper.Map<Level>(request);
         var created = await levelRepository.AddAsync(level);
 
-        return created.Id;
+        return Result<int>.Success(created.Id);
     }
 }

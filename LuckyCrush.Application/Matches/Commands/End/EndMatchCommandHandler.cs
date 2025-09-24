@@ -1,21 +1,22 @@
 ﻿using LuckyCrush.Domain.Entities.Levels;
 using LuckyCrush.Domain.Repositories;
+using LuckyCrush.Domain.Response;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace LuckyCrush.Application.Matches.Commands.End;
 
 public class EndMatchCommandHandler(ILogger<EndMatchCommandHandler> logger,
-    IMatchRepository matchRepository, ILevelRepository levelRepository) : IRequestHandler<EndMatchCommand>
+    IMatchRepository matchRepository) : IRequestHandler<EndMatchCommand, Result>
 {
-    public async Task Handle(EndMatchCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(EndMatchCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Finishing match of id: {Id}", request.MatchId);
 
         var match = await matchRepository.GetMatchWithLevelRequirements(request.MatchId);
         if (match == null)
         {
-
+            return Result.Failure("Match not found");
         }
 
         match.EndedAt = DateTime.UtcNow;
@@ -58,5 +59,6 @@ public class EndMatchCommandHandler(ILogger<EndMatchCommandHandler> logger,
         }
 
         await matchRepository.SaveChangesAsync();
+        return Result.Success();
     }
 }

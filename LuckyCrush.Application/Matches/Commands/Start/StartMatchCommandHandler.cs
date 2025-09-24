@@ -1,15 +1,15 @@
-﻿using AutoMapper;
-using LuckyCrush.Domain.Entities.Levels;
+﻿using LuckyCrush.Domain.Entities.Levels;
 using LuckyCrush.Domain.Repositories;
+using LuckyCrush.Domain.Response;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace LuckyCrush.Application.Matches.Commands.Start;
 
-public class StartMatchCommandHandler(ILogger<StartMatchCommandHandler> logger, IMapper mapper,
-    IMatchRepository matchRepository, ILevelRepository levelRepository) : IRequestHandler<StartMatchCommand, int>
+public class StartMatchCommandHandler(ILogger<StartMatchCommandHandler> logger,
+    IMatchRepository matchRepository) : IRequestHandler<StartMatchCommand, Result<int>>
 {
-    public async Task<int> Handle(StartMatchCommand request, CancellationToken cancellationToken)
+    public async Task<Result<int>> Handle(StartMatchCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Starting match: {@Match}", request);
         var match = new Match
@@ -22,6 +22,6 @@ public class StartMatchCommandHandler(ILogger<StartMatchCommandHandler> logger, 
         };
 
         var created = await matchRepository.AddAsync(match);
-        return created.Id;
+        return Result<int>.Success(created.Id);
     }
 }

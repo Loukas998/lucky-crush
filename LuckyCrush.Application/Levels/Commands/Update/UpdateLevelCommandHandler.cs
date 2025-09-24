@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LuckyCrush.Domain.Entities.Levels;
 using LuckyCrush.Domain.Repositories;
+using LuckyCrush.Domain.Response;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
@@ -10,9 +11,9 @@ public class UpdateLevelCommandHandler(
     ILogger<UpdateLevelCommandHandler> logger,
     IMapper mapper,
     ILevelRepository levelRepository
-) : IRequestHandler<UpdateLevelCommand>
+) : IRequestHandler<UpdateLevelCommand, Result>
 {
-    public async Task Handle(UpdateLevelCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateLevelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Updating Level {LevelId}", request.LevelId);
 
@@ -20,6 +21,7 @@ public class UpdateLevelCommandHandler(
         if (level == null)
         {
             logger.LogWarning("Level {LevelId} not found", request.LevelId);
+            return Result.Failure("Level not found");
         }
 
         level.Number = request.Number;
@@ -31,5 +33,6 @@ public class UpdateLevelCommandHandler(
         await levelRepository.UpdateAsync(level);
 
         logger.LogInformation("Level {LevelId} updated successfully", request.LevelId);
+        return Result.Success();
     }
 }
