@@ -7,6 +7,7 @@ public class MatchProfile : Profile
 {
     public MatchProfile()
     {
-        CreateMap<MatchDto, Match>();
+        CreateMap<MatchDto, Match>()
+            .ReverseMap();
     }
 }

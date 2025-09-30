@@ -8,7 +8,8 @@ public class SpinProfile : Profile
 {
     public SpinProfile()
     {
-        CreateMap<Spin, SpinDto>();
+        CreateMap<Spin, SpinDto>()
+            .ReverseMap();
 
         CreateMap<CreateSpinCommand, Spin>();
     }

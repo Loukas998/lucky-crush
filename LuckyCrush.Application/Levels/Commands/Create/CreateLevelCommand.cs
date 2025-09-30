@@ -4,7 +4,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.Levels.Commands.Create;
 
-public class CreateLevelCommand : IRequest<Result<int>>
+public class CreateLevelCommand : IRequest<Result<LevelDto>>
 {
     public int Number { get; set; }
     public bool IsSpecial { get; set; }

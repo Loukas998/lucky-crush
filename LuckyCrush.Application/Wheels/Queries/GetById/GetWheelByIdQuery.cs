@@ -4,7 +4,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.Wheels.Queries.GetById;
 
-public class GetWheelByIdQuery : IRequest<Result<WheelDto>>
+public class GetWheelByIdQuery(int wheelId) : IRequest<Result<WheelDto>>
 {
-    public int WheelId { get; set; }
+    public int WheelId { get; } = wheelId;
 }

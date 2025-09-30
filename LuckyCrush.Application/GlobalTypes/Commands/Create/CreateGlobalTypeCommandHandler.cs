@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LuckyCrush.Application.GlobalTypes.Dtos;
 using LuckyCrush.Domain.Entities.Globals;
 using LuckyCrush.Domain.Repositories;
 using LuckyCrush.Domain.Response;
@@ -9,14 +10,15 @@ namespace LuckyCrush.Application.GlobalTypes.Commands.Create;
 
 public class CreateGlobalTypeCommandHandler(IGlobalTypeRepository globalTypeRepository, IMapper mapper,
     ILogger<CreateGlobalTypeCommandHandler> logger)
-    : IRequestHandler<CreateGlobalTypeCommand, Result<int>>
+    : IRequestHandler<CreateGlobalTypeCommand, Result<GlobalTypeDto>>
 {
-    public async Task<Result<int>> Handle(CreateGlobalTypeCommand request, CancellationToken cancellationToken)
+    public async Task<Result<GlobalTypeDto>> Handle(CreateGlobalTypeCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating new type: @{GlobalType}", request);
         var globalType = mapper.Map<GlobalType>(request);
 
         var created = await globalTypeRepository.AddAsync(globalType);
-        return Result<int>.Success(created.Id);
+        var result = mapper.Map<GlobalTypeDto>(created);
+        return Result<GlobalTypeDto>.Success(result);
     }
 }

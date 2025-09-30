@@ -4,7 +4,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.Levels.Queries.GetById;
 
-public class GetLevelByIdQuery : IRequest<Result<LevelDto>>
+public class GetLevelByIdQuery(int levelId) : IRequest<Result<LevelDto>>
 {
-    public int LevelId { get; set; }
+    public int LevelId { get; } = levelId;
 }

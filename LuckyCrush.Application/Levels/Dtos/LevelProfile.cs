@@ -9,7 +9,8 @@ public class LevelProfile : Profile
 {
     public LevelProfile()
     {
-        CreateMap<Level, LevelDto>();
+        CreateMap<Level, LevelDto>()
+            .ReverseMap();
         CreateMap<Requirement, RequirementDto>()
             .ReverseMap();
 

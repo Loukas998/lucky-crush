@@ -10,3 +10,4 @@ D:\.Net projects\LuckyCrush.API\LuckyCrush.Domain\obj\Debug\net8.0\LuckyCrush.Do
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Domain\obj\Debug\net8.0\refint\LuckyCrush.Domain.dll
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Domain\obj\Debug\net8.0\LuckyCrush.Domain.pdb
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Domain\obj\Debug\net8.0\ref\LuckyCrush.Domain.dll
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Domain\obj\Debug\net8.0\LuckyCrush.Domain.sourcelink.json

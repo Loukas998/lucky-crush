@@ -181,3 +181,4 @@ D:\.Net projects\LuckyCrush.API\LuckyCrush.API\bin\Debug\net8.0\Serilog.Sinks.De
 D:\.Net projects\LuckyCrush.API\LuckyCrush.API\bin\Debug\net8.0\Serilog.Sinks.File.dll
 D:\.Net projects\LuckyCrush.API\LuckyCrush.API\obj\Debug\net8.0\LuckyCrush.API.MvcApplicationPartsAssemblyInfo.cs
 D:\.Net projects\LuckyCrush.API\LuckyCrush.API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\.Net projects\LuckyCrush.API\LuckyCrush.API\obj\Debug\net8.0\LuckyCrush.API.sourcelink.json

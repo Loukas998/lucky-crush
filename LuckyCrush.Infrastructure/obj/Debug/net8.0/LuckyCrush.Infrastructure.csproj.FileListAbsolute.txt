@@ -17,3 +17,4 @@ D:\.Net projects\LuckyCrush.API\LuckyCrush.Infrastructure\obj\Debug\net8.0\refin
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Infrastructure\obj\Debug\net8.0\LuckyCrush.Infrastructure.pdb
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Infrastructure\obj\Debug\net8.0\LuckyCrush.Infrastructure.genruntimeconfig.cache
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Infrastructure\obj\Debug\net8.0\ref\LuckyCrush.Infrastructure.dll
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Infrastructure\obj\Debug\net8.0\LuckyCrush.Infrastructure.sourcelink.json

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.Tasks.Commands.Delete;
 
-public class DeleteTaskCommand : IRequest<Result>
+public class DeleteTaskCommand(int taskId) : IRequest<Result>
 {
-    public int TaskId { get; set; }
+    public int TaskId { get; } = taskId;
 }

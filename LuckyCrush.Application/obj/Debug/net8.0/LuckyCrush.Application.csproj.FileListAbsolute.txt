@@ -13,3 +13,4 @@ D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCru
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\refint\LuckyCrush.Application.dll
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.pdb
 D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\ref\LuckyCrush.Application.dll
+D:\.Net projects\LuckyCrush.API\LuckyCrush.Application\obj\Debug\net8.0\LuckyCrush.Application.sourcelink.json

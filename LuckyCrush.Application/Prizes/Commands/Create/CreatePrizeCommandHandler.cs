@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LuckyCrush.Application.Prizes.Dtos;
 using LuckyCrush.Domain.Entities.Wheels;
 using LuckyCrush.Domain.Repositories;
 using LuckyCrush.Domain.Response;
@@ -9,9 +10,9 @@ using Microsoft.Extensions.Logging;
 namespace LuckyCrush.Application.Prizes.Commands.Create;
 
 public class CreatePrizeCommandHandler(ILogger<CreatePrizeCommandHandler> logger, IMapper mapper,
-    IPrizeRepository prizeRepository, IFileService fileService) : IRequestHandler<CreatePrizeCommand, Result<int>>
+    IPrizeRepository prizeRepository, IFileService fileService) : IRequestHandler<CreatePrizeCommand, Result<PrizeDto>>
 {
-    public async Task<Result<int>> Handle(CreatePrizeCommand request, CancellationToken cancellationToken)
+    public async Task<Result<PrizeDto>> Handle(CreatePrizeCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating new prize: {@Prize}", request);
         var prize = mapper.Map<Prize>(request);
@@ -22,6 +23,7 @@ public class CreatePrizeCommandHandler(ILogger<CreatePrizeCommandHandler> logger
             prize.Image = imagePath;
         }
         var created = await prizeRepository.AddAsync(prize);
-        return Result<int>.Success(created.Id);
+        var result = mapper.Map<PrizeDto>(created);
+        return Result<PrizeDto>.Success(result);
     }
 }

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.Tasks.Queries.GetById;
 
-public class GetTaskByIdQuery : IRequest<Result<GoalTaskDto>>
+public class GetTaskByIdQuery(int taskId) : IRequest<Result<GoalTaskDto>>
 {
-    public int TaskId { get; set; }
+    public int TaskId { get; } = taskId;
 }

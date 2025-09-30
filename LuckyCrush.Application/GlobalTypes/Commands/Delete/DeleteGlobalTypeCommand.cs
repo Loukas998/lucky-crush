@@ -3,7 +3,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.GlobalTypes.Commands.Delete;
 
-public class DeleteGlobalTypeCommand : IRequest<Result>
+public class DeleteGlobalTypeCommand(int globalTypeId) : IRequest<Result>
 {
-    public int GlobalTypeId { get; set; }
+    public int GlobalTypeId { get; } = globalTypeId;
 }

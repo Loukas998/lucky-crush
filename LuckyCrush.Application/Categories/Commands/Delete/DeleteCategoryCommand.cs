@@ -3,7 +3,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.Categories.Commands.Delete;
 
-public class DeleteCategoryCommand : IRequest<Result>
+public class DeleteCategoryCommand(int categoryId) : IRequest<Result>
 {
-    public int CategoryId { get; set; }
+    public int CategoryId { get; } = categoryId;
 }

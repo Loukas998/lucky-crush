@@ -3,7 +3,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.Levels.Commands.Delete;
 
-public class DeleteLevelCommand : IRequest<Result>
+public class DeleteLevelCommand(int levelId) : IRequest<Result>
 {
-    public int LevelId { get; set; }
+    public int LevelId { get; } = levelId;
 }

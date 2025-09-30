@@ -3,7 +3,7 @@ using MediatR;
 
 namespace LuckyCrush.Application.Unlockables.Commands.Delete;
 
-public class DeleteUnlockableCommand : IRequest<Result>
+public class DeleteUnlockableCommand(int unlockableId) : IRequest<Result>
 {
-    public int UnlockableId { get; set; }
+    public int UnlockableId { get; } = unlockableId;
 }

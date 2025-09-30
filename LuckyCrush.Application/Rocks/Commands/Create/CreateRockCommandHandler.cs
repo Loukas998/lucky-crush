@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LuckyCrush.Application.Rocks.Dtos;
 using LuckyCrush.Domain.Entities.Game;
 using LuckyCrush.Domain.Repositories;
 using LuckyCrush.Domain.Response;
@@ -10,9 +11,9 @@ namespace LuckyCrush.Application.Rocks.Commands.Create;
 
 public class CreateRockCommandHandler(ILogger<CreateRockCommandHandler> logger,
     IRockRepository rockRepository, IMapper mapper, IFileService fileService)
-    : IRequestHandler<CreateRockCommand, Result<int>>
+    : IRequestHandler<CreateRockCommand, Result<RockDto>>
 {
-    public async Task<Result<int>> Handle(CreateRockCommand request, CancellationToken cancellationToken)
+    public async Task<Result<RockDto>> Handle(CreateRockCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating new rock: {@Rock}", request);
         var rock = mapper.Map<Rock>(request);
@@ -22,6 +23,7 @@ public class CreateRockCommandHandler(ILogger<CreateRockCommandHandler> logger,
         }
 
         var created = await rockRepository.AddAsync(rock);
-        return Result<int>.Success(created.Id);
+        var result = mapper.Map<RockDto>(created);
+        return Result<RockDto>.Success(result);
     }
 }

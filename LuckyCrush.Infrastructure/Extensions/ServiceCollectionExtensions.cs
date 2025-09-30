@@ -35,6 +35,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUnlockableRepository, UnlockableRepository>();
         services.AddScoped<IRockRepository, RockRepository>();
         services.AddScoped<ILevelRepository, LevelRepository>();
+        services.AddScoped<IMatchRepository, MatchRepository>();
 
         //this for identity and jwt when needed
         services.AddIdentityCore<User>(options =>

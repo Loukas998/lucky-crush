@@ -4,6 +4,7 @@ using LuckyCrush.Domain.Repositories;
 using LuckyCrush.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace LuckyCrush.Infrastructure.Repositories;
 
@@ -36,13 +37,16 @@ public class AccountRepository(UserManager<User> userManager, ApplicationDbConte
 
         using var tx = await dbContext.Database.BeginTransactionAsync();
 
+        user.UserName = GenerateName();
+        user.Email = user.UserName + "@luckycrush.com";
+
         var result = await userManager.CreateAsync(user);
         if (!result.Succeeded)
         {
             return result.Errors;
         }
 
-        await userManager.AddToRoleAsync(user, role);
+        //await userManager.AddToRoleAsync(user, role);
 
         var profile = new Profile
         {
@@ -144,5 +148,19 @@ public class AccountRepository(UserManager<User> userManager, ApplicationDbConte
 
         otp.IsUsed = true;
         return true;
+    }
+
+    private string GenerateName()
+    {
+        Random random = new Random();
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
+        StringBuilder result = new StringBuilder("New_");
+
+        for (int i = 0; i < 5; i++)
+        {
+            result.Append(chars[random.Next(chars.Length)]);
+        }
+
+        return result.ToString();
     }
 }

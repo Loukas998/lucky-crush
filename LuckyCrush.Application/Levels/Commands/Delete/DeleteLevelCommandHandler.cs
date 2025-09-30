@@ -8,7 +8,7 @@ namespace LuckyCrush.Application.Levels.Commands.Delete;
 public class DeleteLevelCommandHandler(ILogger<DeleteLevelCommandHandler> logger,
     ILevelRepository levelRepository) : IRequestHandler<DeleteLevelCommand, Result>
 {
-    public async Task Handle(DeleteLevelCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(DeleteLevelCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Deleting level with id: {Id}", request.LevelId);
         var level = await levelRepository.GetLevelWithRequirementAsync(request.LevelId);
