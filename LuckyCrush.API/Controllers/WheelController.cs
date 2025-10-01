@@ -16,6 +16,7 @@ namespace LuckyCrush.API.Controllers;
 public class WheelController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Route("CreateWheel")]
     public async Task<ActionResult<ApiResponse<WheelDto>>> CreateWheel([FromForm] CreateWheelCommand command)
     {
         var result = await mediator.Send(command);
@@ -41,6 +42,7 @@ public class WheelController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllWheels")]
     public async Task<ActionResult<ApiResponse<IEnumerable<WheelDto>>>> GetAllWheels()
     {
         var result = await mediator.Send(new GetAllWheelsQuery());
@@ -65,7 +67,8 @@ public class WheelController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpPut("{id:int}")]
+    [HttpPatch]
+    [Route("UpdateWheel/{id:int}")]
     public async Task<ActionResult<ApiResponse>> UpdateWheel([FromRoute] int id, [FromForm] UpdateWheelCommand command)
     {
         var result = await mediator.Send(command);
@@ -89,7 +92,8 @@ public class WheelController(IMediator mediator) : ControllerBase
         return NotFound(failureResponse);
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete]
+    [Route("DeleteWheel/{id:int}")]
     public async Task<ActionResult<ApiResponse>> DeleteWheel([FromRoute] int id)
     {
         var result = await mediator.Send(new DeleteWheelCommand(id));
@@ -113,7 +117,8 @@ public class WheelController(IMediator mediator) : ControllerBase
         return NotFound(failureResponse);
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet]
+    [Route("GetWheelById/{id:int}")]
     public async Task<ActionResult<ApiResponse<WheelDto>>> GetWheelById([FromRoute] int id)
     {
         var result = await mediator.Send(new GetWheelByIdQuery(id));

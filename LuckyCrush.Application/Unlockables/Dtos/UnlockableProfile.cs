@@ -6,7 +6,8 @@ public class UnlockableProfile : AutoMapper.Profile
 {
     public UnlockableProfile()
     {
-        CreateMap<Unlockable, UnlockableDto>();
+        CreateMap<Unlockable, UnlockableDto>()
+            .ReverseMap();
 
     }
 }

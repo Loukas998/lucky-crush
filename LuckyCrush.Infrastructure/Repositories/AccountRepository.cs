@@ -1,5 +1,6 @@
 ﻿using LuckyCrush.Domain.Entities.Account;
 using LuckyCrush.Domain.Entities.Sessions;
+using LuckyCrush.Domain.Entities.Wheels;
 using LuckyCrush.Domain.Repositories;
 using LuckyCrush.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +11,33 @@ namespace LuckyCrush.Infrastructure.Repositories;
 
 public class AccountRepository(UserManager<User> userManager, ApplicationDbContext dbContext) : IAccountRepository
 {
+    public async Task<Balance> GetPlayerBalanceAsync(string userId)
+    {
+        var user = await dbContext.Users
+            .Include(u => u.Balance)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+
+        return user!.Balance;
+    }
+
+    public async Task<IEnumerable<Prize>> GetPlayerPrizesAsync(string userId)
+    {
+        var user = await dbContext.Users
+            .Include(u => u.Prizes)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+
+        return user!.Prizes;
+    }
+
+    public async Task<Profile> GetPlayerProfileAsync(string userId)
+    {
+        var user = await dbContext.Users
+            .Include(u => u.Profile)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+
+        return user!.Profile;
+    }
+
     public async Task<User?> GetUserByIdAsync(string userId)
     {
         return await userManager.FindByIdAsync(userId);
@@ -30,9 +58,9 @@ public class AccountRepository(UserManager<User> userManager, ApplicationDbConte
         if (existingUser != null)
         {
             return new List<IdentityError>
-        {
-            new IdentityError { Description = "This account already exists." }
-        };
+                {
+                    new IdentityError { Description = "This account already exists." }
+                };
         }
 
         using var tx = await dbContext.Database.BeginTransactionAsync();
@@ -81,6 +109,28 @@ public class AccountRepository(UserManager<User> userManager, ApplicationDbConte
 
         await dbContext.SaveChangesAsync();
         await tx.CommitAsync();
+
+        return Enumerable.Empty<IdentityError>();
+    }
+
+    public async Task<IEnumerable<IdentityError>> RegisterGoogle(User user)
+    {
+        var existingUser = await dbContext.Users
+            .FirstOrDefaultAsync(u => u.PhoneNumber == user.PhoneNumber);
+
+        if (existingUser != null)
+        {
+            return new List<IdentityError>
+            {
+                new IdentityError { Description = "This account already exists." }
+            };
+        }
+
+        var result = await userManager.CreateAsync(user);
+        if (!result.Succeeded)
+        {
+            return result.Errors;
+        }
 
         return Enumerable.Empty<IdentityError>();
     }

@@ -15,6 +15,7 @@ namespace LuckyCrush.API.Controllers;
 public class UnlockableController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Route("CreateUnlockable")]
     public async Task<ActionResult<ApiResponse<UnlockableDto>>> CreateUnlockable([FromForm] CreateUnlockableCommand command)
     {
         var result = await mediator.Send(command);
@@ -40,6 +41,7 @@ public class UnlockableController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllUnlockables")]
     public async Task<ActionResult<ApiResponse<IEnumerable<UnlockableDto>>>> GetAllUnlockables()
     {
         var result = await mediator.Send(new GetAllUnlockablesQuery());
@@ -64,7 +66,8 @@ public class UnlockableController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpPut("{id:int}")]
+    [HttpPatch]
+    [Route("UpdateUnlockable/{id:int}")]
     public async Task<ActionResult<ApiResponse>> UpdateUnlockable([FromRoute] int id, [FromForm] UpdateUnlockableCommand command)
     {
         var result = await mediator.Send(command);
@@ -88,7 +91,8 @@ public class UnlockableController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete]
+    [Route("DeleteUnlockable/{id:int}")]
     public async Task<ActionResult<ApiResponse>> DeleteUnlockable([FromRoute] int id)
     {
         var result = await mediator.Send(new DeleteUnlockableCommand(id));

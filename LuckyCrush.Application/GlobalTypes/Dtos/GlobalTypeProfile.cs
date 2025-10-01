@@ -9,7 +9,8 @@ public class GlobalTypeProfile : Profile
 {
     public GlobalTypeProfile()
     {
-        CreateMap<GlobalType, GlobalTypeDto>();
+        CreateMap<GlobalType, GlobalTypeDto>()
+            .ReverseMap();
 
         CreateMap<CreateGlobalTypeCommand, GlobalType>();
         CreateMap<UpdateGlobalTypeCommand, GlobalType>();

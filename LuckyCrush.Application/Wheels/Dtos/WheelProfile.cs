@@ -7,6 +7,7 @@ public class WheelProfile : Profile
 {
     public WheelProfile()
     {
-        CreateMap<Wheel, WheelDto>();
+        CreateMap<Wheel, WheelDto>()
+            .ReverseMap();
     }
 }

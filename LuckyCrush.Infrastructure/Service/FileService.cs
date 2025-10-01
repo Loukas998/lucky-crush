@@ -97,4 +97,15 @@ public class FileService(IWebHostEnvironment environment) : IFileService
 
         File.Delete(path);
     }
+
+    public async Task<string> SaveBytesImage(byte[] bytes, string path)
+    {
+        if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+
+        var fileName = $"{Guid.NewGuid()}.png";
+        var filePath = Path.Combine(path, fileName);
+
+        await File.WriteAllBytesAsync(filePath, bytes);
+        return filePath;
+    }
 }

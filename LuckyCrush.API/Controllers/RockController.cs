@@ -16,6 +16,7 @@ namespace LuckyCrush.API.Controllers;
 public class RockController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Route("CreateRock")]
     public async Task<ActionResult<ApiResponse<RockDto>>> CreateRock([FromForm] CreateRockCommand command)
     {
         var result = await mediator.Send(command);
@@ -44,6 +45,7 @@ public class RockController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllRocks")]
     public async Task<ActionResult<ApiResponse<IEnumerable<RockDto>>>> GetAllRocks()
     {
         var result = await mediator.Send(new GetAllRocksQuery());
@@ -71,7 +73,8 @@ public class RockController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpPatch("{id}")]
+    [HttpPatch]
+    [Route("UpdateRock/{id}")]
     public async Task<ActionResult<ApiResponse>> UpdateRock([FromRoute] int id, [FromForm] UpdateRockCommand command)
     {
         var result = await mediator.Send(command);
@@ -84,9 +87,7 @@ public class RockController(IMediator mediator) : ControllerBase
             return Ok(response);
         }
 
-
         var errors = new List<ApiError>() { new() { Description = result.Error } };
-
 
         var failureResponse = ApiResponse.Failure(
             errors,
@@ -94,12 +95,11 @@ public class RockController(IMediator mediator) : ControllerBase
             HttpStatusCode.BadRequest
         );
 
-
         return BadRequest(failureResponse);
     }
 
-
-    [HttpDelete("{id:int}")]
+    [HttpDelete]
+    [Route("DeleteRock/{id:int}")]
     public async Task<ActionResult<ApiResponse>> DeleteRock([FromRoute] int id)
     {
         var result = await mediator.Send(new DeleteRockCommand(id));
@@ -112,16 +112,13 @@ public class RockController(IMediator mediator) : ControllerBase
             return Ok(response);
         }
 
-
         var errors = new List<ApiError>() { new() { Description = result.Error } };
-
 
         var failureResponse = ApiResponse.Failure(
             errors,
             "Failed to delete rock",
             HttpStatusCode.BadRequest
         );
-
 
         return BadRequest(failureResponse);
     }

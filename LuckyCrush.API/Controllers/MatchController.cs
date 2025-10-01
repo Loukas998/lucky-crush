@@ -12,7 +12,8 @@ namespace LuckyCrush.API.Controllers;
 [Route("api/[controller]")]
 public class MatchController(IMediator mediator) : ControllerBase
 {
-    [HttpPost(nameof(StartMatch))]
+    [HttpPost]
+    [Route("StartMatch")]
     public async Task<ActionResult<ApiResponse<MatchDto>>> StartMatch([FromBody] StartMatchCommand command)
     {
         var result = await mediator.Send(command);
@@ -26,10 +27,7 @@ public class MatchController(IMediator mediator) : ControllerBase
             return Ok(response);
         }
 
-        var errors = new List<ApiError>()
-        {
-            new () { Description = result.Error }
-        };
+        var errors = new List<ApiError> { new() { Description = result.Error } };
 
         var failureResponse = ApiResponse<MatchDto>.Failure(
             errors,
@@ -40,23 +38,21 @@ public class MatchController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpPost(nameof(EndMatch))]
+    [HttpPost]
+    [Route("EndMatch")]
     public async Task<ActionResult<ApiResponse>> EndMatch([FromBody] EndMatchCommand command)
     {
         var result = await mediator.Send(command);
         if (result.IsSuccess)
         {
             var response = ApiResponse.Success(
-                message: "Match started recording successfully",
+                message: "Match ended recording successfully",
                 HttpStatusCode.OK
             );
             return Ok(response);
         }
 
-        var errors = new List<ApiError>()
-        {
-            new () { Description = result.Error }
-        };
+        var errors = new List<ApiError> { new() { Description = result.Error } };
 
         var failureResponse = ApiResponse<MatchDto>.Failure(
             errors,

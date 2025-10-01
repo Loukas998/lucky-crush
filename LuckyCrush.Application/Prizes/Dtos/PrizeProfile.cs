@@ -9,7 +9,8 @@ public class PrizeProfile : Profile
 {
     public PrizeProfile()
     {
-        CreateMap<Prize, PrizeDto>();
+        CreateMap<Prize, PrizeDto>()
+            .ReverseMap();
 
         CreateMap<CreatePrizeCommand, Prize>()
             .ForMember(dest => dest.Image, opt => opt.Ignore());

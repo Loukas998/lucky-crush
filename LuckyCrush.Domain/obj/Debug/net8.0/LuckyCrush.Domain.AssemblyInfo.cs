@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LuckyCrush.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce0532b1b3febc60bf63c7972976854748ba41ab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1959f7a27743f82d36c5b4587b74c34a432a05cd")]
 [assembly: System.Reflection.AssemblyProductAttribute("LuckyCrush.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LuckyCrush.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

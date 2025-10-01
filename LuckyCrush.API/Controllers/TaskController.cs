@@ -17,6 +17,7 @@ namespace LuckyCrush.API.Controllers;
 public class TaskController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Route("CreateTask")]
     public async Task<ActionResult<ApiResponse<GoalTaskDto>>> CreateTask([FromBody] CreateTaskCommand command)
     {
         var result = await mediator.Send(command);
@@ -44,7 +45,8 @@ public class TaskController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet]
+    [Route("GetTaskById/{id:int}")]
     public async Task<ActionResult<ApiResponse<GoalTaskDto>>> GetTaskById([FromRoute] int id)
     {
         var result = await mediator.Send(new GetTaskByIdQuery(id));
@@ -73,6 +75,7 @@ public class TaskController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllTasks")]
     public async Task<ActionResult<ApiResponse<IEnumerable<GoalTaskDto>>>> GetAllTasks()
     {
         var result = await mediator.Send(new GetAllTasksQuery());
@@ -100,7 +103,8 @@ public class TaskController(IMediator mediator) : ControllerBase
         return NotFound(failureResponse);
     }
 
-    [HttpPatch("{id:int}")]
+    [HttpPatch]
+    [Route("UpdateTask/{id:int}")]
     public async Task<ActionResult<ApiResponse>> UpdateTask([FromRoute] int id, [FromBody] UpdateTaskCommand command)
     {
         command.TaskId = id;
@@ -128,7 +132,8 @@ public class TaskController(IMediator mediator) : ControllerBase
         return NotFound(failureResponse);
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete]
+    [Route("DeleteTask/{id:int}")]
     public async Task<ActionResult<ApiResponse>> DeleteTask([FromRoute] int id)
     {
         var result = await mediator.Send(new DeleteTaskCommand(id));

@@ -15,7 +15,8 @@ namespace LuckyCrush.API.Controllers;
 [Route("api/[controller]")]
 public class LevelController(IMediator mediator) : ControllerBase
 {
-    [HttpPost(nameof(CreateLevel))]
+    [HttpPost]
+    [Route("CreateLevel")]
     public async Task<ActionResult<ApiResponse<LevelDto>>> CreateLevel([FromBody] CreateLevelCommand command)
     {
         var result = await mediator.Send(command);
@@ -29,10 +30,7 @@ public class LevelController(IMediator mediator) : ControllerBase
             return Ok(response);
         }
 
-        var errors = new List<ApiError>()
-        {
-            new () { Description = result.Error }
-        };
+        var errors = new List<ApiError>() { new() { Description = result.Error } };
 
         var failureResponse = ApiResponse<LevelDto>.Failure(
             errors,
@@ -43,7 +41,8 @@ public class LevelController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpGet("{id:int}")]
+    [HttpGet]
+    [Route("GetLevelById/{id:int}")]
     public async Task<ActionResult<ApiResponse<LevelDto>>> GetLevelById([FromRoute] int id)
     {
         var result = await mediator.Send(new GetLevelByIdQuery(id));
@@ -51,16 +50,13 @@ public class LevelController(IMediator mediator) : ControllerBase
         {
             var response = ApiResponse<LevelDto>.Success(
                 data: result.Value,
-                message: "Level created successfully",
+                message: "Level retrieved successfully",
                 HttpStatusCode.OK
             );
             return Ok(response);
         }
 
-        var errors = new List<ApiError>()
-        {
-            new () { Description = result.Error }
-        };
+        var errors = new List<ApiError>() { new() { Description = result.Error } };
 
         var failureResponse = ApiResponse<LevelDto>.Failure(
             errors,
@@ -72,6 +68,7 @@ public class LevelController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllLevels")]
     public async Task<ActionResult<ApiResponse<IEnumerable<LevelDto>>>> GetAllLevels()
     {
         var result = await mediator.Send(new GetAllLevelsQuery());
@@ -85,10 +82,7 @@ public class LevelController(IMediator mediator) : ControllerBase
             return Ok(response);
         }
 
-        var errors = new List<ApiError>()
-        {
-            new () { Description = result.Error }
-        };
+        var errors = new List<ApiError>() { new() { Description = result.Error } };
 
         var failureResponse = ApiResponse<LevelDto>.Failure(
             errors,
@@ -99,34 +93,33 @@ public class LevelController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete]
+    [Route("DeleteLevel/{id:int}")]
     public async Task<ActionResult<ApiResponse>> DeleteLevel([FromRoute] int id)
     {
         var result = await mediator.Send(new DeleteLevelCommand(id));
         if (result.IsSuccess)
         {
             var response = ApiResponse.Success(
-                message: "Levels deleted successfully",
+                message: "Level deleted successfully",
                 statusCode: HttpStatusCode.OK
             );
             return Ok(response);
         }
 
-        var errors = new List<ApiError>()
-        {
-            new () { Description = result.Error }
-        };
+        var errors = new List<ApiError>() { new() { Description = result.Error } };
 
         var failureResponse = ApiResponse.Failure(
             errors,
-            "Failed to delete levels",
+            "Failed to delete level",
             HttpStatusCode.BadRequest
         );
 
         return BadRequest(failureResponse);
     }
 
-    [HttpPatch("{id:int}")]
+    [HttpPatch]
+    [Route("UpdateLevel/{id:int}")]
     public async Task<ActionResult<ApiResponse>> UpdateLevel([FromRoute] int id, [FromBody] UpdateLevelCommand command)
     {
         command.LevelId = id;
@@ -134,20 +127,17 @@ public class LevelController(IMediator mediator) : ControllerBase
         if (result.IsSuccess)
         {
             var response = ApiResponse.Success(
-                message: "Levels updated successfully",
+                message: "Level updated successfully",
                 statusCode: HttpStatusCode.OK
             );
             return Ok(response);
         }
 
-        var errors = new List<ApiError>()
-        {
-            new () { Description = result.Error }
-        };
+        var errors = new List<ApiError>() { new() { Description = result.Error } };
 
         var failureResponse = ApiResponse.Failure(
             errors,
-            "Failed to updated levels",
+            "Failed to update level",
             HttpStatusCode.BadRequest
         );
 

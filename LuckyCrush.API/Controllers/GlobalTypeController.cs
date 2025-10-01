@@ -15,6 +15,7 @@ namespace LuckyCrush.API.Controllers;
 public class GlobalTypeController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Route("CreateGlobalType")]
     public async Task<ActionResult<ApiResponse<GlobalTypeDto>>> CreateGlobalType([FromForm] CreateGlobalTypeCommand command)
     {
         var result = await mediator.Send(command);
@@ -40,6 +41,7 @@ public class GlobalTypeController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllGlobalTypes")]
     public async Task<ActionResult<ApiResponse<IEnumerable<GlobalTypeDto>>>> GetAllGlobalTypes()
     {
         var result = await mediator.Send(new GetAllGlobalQuery());
@@ -64,7 +66,8 @@ public class GlobalTypeController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpPatch("{id:int}")]
+    [HttpPatch]
+    [Route("UpdateGlobalType/{id:int}")]
     public async Task<ActionResult<ApiResponse>> UpdateGlobalType([FromRoute] int id, [FromForm] UpdateGlobalTypeCommand command)
     {
         var result = await mediator.Send(command);
@@ -88,7 +91,8 @@ public class GlobalTypeController(IMediator mediator) : ControllerBase
         return NotFound(failureResponse);
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete]
+    [Route("DeleteGlobalType/{id:int}")]
     public async Task<ActionResult<ApiResponse>> DeleteGlobalType([FromRoute] int id)
     {
         var result = await mediator.Send(new DeleteGlobalTypeCommand(id));

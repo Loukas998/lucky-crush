@@ -11,6 +11,7 @@ public class RewardProfile : Profile
     {
         CreateMap<CreateRewardCommand, Reward>();
         CreateMap<UpdateRewardCommand, Reward>();
-        CreateMap<Reward, RewardDto>();
+        CreateMap<Reward, RewardDto>()
+            .ReverseMap();
     }
 }

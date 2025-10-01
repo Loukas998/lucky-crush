@@ -15,6 +15,7 @@ namespace LuckyCrush.API.Controllers;
 public class RewardController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Route("CreateReward")]
     public async Task<ActionResult<ApiResponse<RewardDto>>> CreateReward([FromForm] CreateRewardCommand command)
     {
         var result = await mediator.Send(command);
@@ -40,6 +41,7 @@ public class RewardController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllRewards")]
     public async Task<ActionResult<ApiResponse<IEnumerable<RewardDto>>>> GetAllRewards()
     {
         var result = await mediator.Send(new GetAllRewardsQuery());
@@ -64,7 +66,8 @@ public class RewardController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpPatch("{id:int}")]
+    [HttpPatch]
+    [Route("UpdateReward/{id:int}")]
     public async Task<ActionResult<ApiResponse>> UpdateReward([FromRoute] int id, [FromForm] UpdateRewardCommand command)
     {
         var result = await mediator.Send(command);
@@ -88,7 +91,8 @@ public class RewardController(IMediator mediator) : ControllerBase
         return NotFound(failureResponse);
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete]
+    [Route("DeleteReward/{id:int}")]
     public async Task<ActionResult<ApiResponse>> DeleteReward([FromRoute] int id)
     {
         var result = await mediator.Send(new DeleteRewardCommand(id));

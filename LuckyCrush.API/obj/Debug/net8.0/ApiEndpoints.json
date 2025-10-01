@@ -52,42 +52,27 @@
     ]
   },
   {
-    "ContainingType": "LuckyCrush.API.Controllers.LevelController",
-    "Method": "GetAllLevels",
-    "RelativePath": "api/Level",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Levels.Dtos.LevelDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "LuckyCrush.API.Controllers.LevelController",
-    "Method": "GetLevelById",
-    "RelativePath": "api/Level/{id}",
-    "HttpMethod": "GET",
+    "ContainingType": "LuckyCrush.API.Controllers.CategoryController",
+    "Method": "CreateCategory",
+    "RelativePath": "api/Category/CreateCategory",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InGame",
+        "Type": "System.Boolean",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Levels.Dtos.LevelDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Categories.Dtos.CategoryDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -98,9 +83,9 @@
     ]
   },
   {
-    "ContainingType": "LuckyCrush.API.Controllers.LevelController",
-    "Method": "DeleteLevel",
-    "RelativePath": "api/Level/{id}",
+    "ContainingType": "LuckyCrush.API.Controllers.CategoryController",
+    "Method": "DeleteCategory",
+    "RelativePath": "api/Category/DeleteCategory/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -124,9 +109,29 @@
     ]
   },
   {
-    "ContainingType": "LuckyCrush.API.Controllers.LevelController",
-    "Method": "UpdateLevel",
-    "RelativePath": "api/Level/{id}",
+    "ContainingType": "LuckyCrush.API.Controllers.CategoryController",
+    "Method": "GetAllCategories",
+    "RelativePath": "api/Category/GetAllCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Categories.Dtos.CategoryDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.CategoryController",
+    "Method": "UpdateCategory",
+    "RelativePath": "api/Category/UpdateCategory/{id}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -137,9 +142,137 @@
         "IsRequired": true
       },
       {
-        "Name": "command",
-        "Type": "LuckyCrush.Application.Levels.Commands.Update.UpdateLevelCommand",
+        "Name": "CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InGame",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.GlobalTypeController",
+    "Method": "CreateGlobalType",
+    "RelativePath": "api/GlobalType/CreateGlobalType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TypeName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.GlobalTypes.Dtos.GlobalTypeDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.GlobalTypeController",
+    "Method": "DeleteGlobalType",
+    "RelativePath": "api/GlobalType/DeleteGlobalType/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.GlobalTypeController",
+    "Method": "GetAllGlobalTypes",
+    "RelativePath": "api/GlobalType/GetAllGlobalTypes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.GlobalTypes.Dtos.GlobalTypeDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.GlobalTypeController",
+    "Method": "UpdateGlobalType",
+    "RelativePath": "api/GlobalType/UpdateGlobalType/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "GlobalTypeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TypeName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
@@ -171,6 +304,109 @@
     "ReturnTypes": [
       {
         "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Levels.Dtos.LevelDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.LevelController",
+    "Method": "DeleteLevel",
+    "RelativePath": "api/Level/DeleteLevel/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.LevelController",
+    "Method": "GetAllLevels",
+    "RelativePath": "api/Level/GetAllLevels",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Levels.Dtos.LevelDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.LevelController",
+    "Method": "GetLevelById",
+    "RelativePath": "api/Level/GetLevelById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Levels.Dtos.LevelDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.LevelController",
+    "Method": "UpdateLevel",
+    "RelativePath": "api/Level/UpdateLevel/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "command",
+        "Type": "LuckyCrush.Application.Levels.Commands.Update.UpdateLevelCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -233,9 +469,413 @@
     ]
   },
   {
+    "ContainingType": "LuckyCrush.API.Controllers.PrizeController",
+    "Method": "CreatePrize",
+    "RelativePath": "api/Prize/CreatePrize",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "WheelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Amount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Prizes.Dtos.PrizeDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.PrizeController",
+    "Method": "DeletePrize",
+    "RelativePath": "api/Prize/DeletePrize/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.PrizeController",
+    "Method": "GetAllPrizes",
+    "RelativePath": "api/Prize/GetAllPrizes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Prizes.Dtos.PrizeDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.PrizeController",
+    "Method": "UpdatePrize",
+    "RelativePath": "api/Prize/UpdatePrize/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "PrizeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "WheelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Amount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RewardController",
+    "Method": "CreateReward",
+    "RelativePath": "api/Reward/CreateReward",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TypeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TaskId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Amount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Rewards.Dtos.RewardDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RewardController",
+    "Method": "DeleteReward",
+    "RelativePath": "api/Reward/DeleteReward/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RewardController",
+    "Method": "GetAllRewards",
+    "RelativePath": "api/Reward/GetAllRewards",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Rewards.Dtos.RewardDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RewardController",
+    "Method": "UpdateReward",
+    "RelativePath": "api/Reward/UpdateReward/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "RewardId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TypeId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "TaskId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Amount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RockController",
+    "Method": "CreateRock",
+    "RelativePath": "api/Rock/CreateRock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Rocks.Dtos.RockDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RockController",
+    "Method": "DeleteRock",
+    "RelativePath": "api/Rock/DeleteRock/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RockController",
+    "Method": "GetAllRocks",
+    "RelativePath": "api/Rock/GetAllRocks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Rocks.Dtos.RockDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RockController",
+    "Method": "UpdateRock",
+    "RelativePath": "api/Rock/UpdateRock/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "RockId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.SpinController",
+    "Method": "GetAllSpins",
+    "RelativePath": "api/Spin/GetAllSpins",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Spins.Dtos.SpinDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "LuckyCrush.API.Controllers.SpinController",
     "Method": "Spin",
-    "RelativePath": "api/Spin",
+    "RelativePath": "api/Spin/Spin",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -259,29 +899,9 @@
     ]
   },
   {
-    "ContainingType": "LuckyCrush.API.Controllers.SpinController",
-    "Method": "GetAllSpins",
-    "RelativePath": "api/Spin",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Spins.Dtos.SpinDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
     "ContainingType": "LuckyCrush.API.Controllers.TaskController",
     "Method": "CreateTask",
-    "RelativePath": "api/Task",
+    "RelativePath": "api/Task/CreateTask",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -306,8 +926,34 @@
   },
   {
     "ContainingType": "LuckyCrush.API.Controllers.TaskController",
+    "Method": "DeleteTask",
+    "RelativePath": "api/Task/DeleteTask/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.TaskController",
     "Method": "GetAllTasks",
-    "RelativePath": "api/Task",
+    "RelativePath": "api/Task/GetAllTasks",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -327,7 +973,7 @@
   {
     "ContainingType": "LuckyCrush.API.Controllers.TaskController",
     "Method": "GetTaskById",
-    "RelativePath": "api/Task/{id}",
+    "RelativePath": "api/Task/GetTaskById/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -353,7 +999,7 @@
   {
     "ContainingType": "LuckyCrush.API.Controllers.TaskController",
     "Method": "UpdateTask",
-    "RelativePath": "api/Task/{id}",
+    "RelativePath": "api/Task/UpdateTask/{id}",
     "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
@@ -382,9 +1028,45 @@
     ]
   },
   {
-    "ContainingType": "LuckyCrush.API.Controllers.TaskController",
-    "Method": "DeleteTask",
-    "RelativePath": "api/Task/{id}",
+    "ContainingType": "LuckyCrush.API.Controllers.UnlockableController",
+    "Method": "CreateUnlockable",
+    "RelativePath": "api/Unlockable/CreateUnlockable",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Unlockables.Dtos.UnlockableDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.UnlockableController",
+    "Method": "DeleteUnlockable",
+    "RelativePath": "api/Unlockable/DeleteUnlockable/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -393,6 +1075,236 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.UnlockableController",
+    "Method": "GetAllUnlockables",
+    "RelativePath": "api/Unlockable/GetAllUnlockables",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Unlockables.Dtos.UnlockableDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.UnlockableController",
+    "Method": "UpdateUnlockable",
+    "RelativePath": "api/Unlockable/UpdateUnlockable/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "UnlockableId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.WheelController",
+    "Method": "CreateWheel",
+    "RelativePath": "api/Wheel/CreateWheel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "StartTime",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "EndTime",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsActive",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Wheels.Dtos.WheelDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.WheelController",
+    "Method": "DeleteWheel",
+    "RelativePath": "api/Wheel/DeleteWheel/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.WheelController",
+    "Method": "GetAllWheels",
+    "RelativePath": "api/Wheel/GetAllWheels",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Wheels.Dtos.WheelDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.WheelController",
+    "Method": "GetWheelById",
+    "RelativePath": "api/Wheel/GetWheelById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Wheels.Dtos.WheelDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.WheelController",
+    "Method": "UpdateWheel",
+    "RelativePath": "api/Wheel/UpdateWheel/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "WheelId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "StartTime",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "EndTime",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsActive",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Type",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

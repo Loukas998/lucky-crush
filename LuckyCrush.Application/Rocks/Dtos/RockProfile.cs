@@ -9,7 +9,8 @@ public class RockProfile : Profile
 {
     public RockProfile()
     {
-        CreateMap<Rock, RockDto>();
+        CreateMap<Rock, RockDto>()
+            .ReverseMap();
 
         CreateMap<CreateRockCommand, Rock>()
             .ForMember(dest => dest.ImagePath, opt => opt.Ignore());

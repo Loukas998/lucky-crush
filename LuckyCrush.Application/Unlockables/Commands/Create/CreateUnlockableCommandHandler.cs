@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LuckyCrush.Application.Unlockables.Dtos;
 using LuckyCrush.Domain.Entities.Account;
 using LuckyCrush.Domain.Repositories;
 using LuckyCrush.Domain.Response;
@@ -10,9 +11,9 @@ namespace LuckyCrush.Application.Unlockables.Commands.Create;
 
 public class CreateUnlockableCommandHandler(ILogger<CreateUnlockableCommandHandler> logger, IMapper mapper,
     IUnlockableRepository unlockableRepository, IFileService fileService)
-    : IRequestHandler<CreateUnlockableCommand, Result<int>>
+    : IRequestHandler<CreateUnlockableCommand, Result<UnlockableDto>>
 {
-    public async Task<Result<int>> Handle(CreateUnlockableCommand request, CancellationToken cancellationToken)
+    public async Task<Result<UnlockableDto>> Handle(CreateUnlockableCommand request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Creating new unlockable: {@Unlockable}", request);
         var unlockable = mapper.Map<Unlockable>(request);
@@ -22,6 +23,7 @@ public class CreateUnlockableCommandHandler(ILogger<CreateUnlockableCommandHandl
         }
 
         var created = await unlockableRepository.AddAsync(unlockable);
-        return Result<int>.Success(created.Id);
+        var result = mapper.Map<UnlockableDto>(created);
+        return Result<UnlockableDto>.Success(result);
     }
 }

@@ -13,6 +13,7 @@ namespace LuckyCrush.API.Controllers;
 public class SpinController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Route("Spin")]
     public async Task<ActionResult<ApiResponse<SpinDto>>> Spin([FromBody] CreateSpinCommand command)
     {
         var result = await mediator.Send(command);
@@ -39,6 +40,7 @@ public class SpinController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllSpins")]
     public async Task<ActionResult<ApiResponse<IEnumerable<SpinDto>>>> GetAllSpins()
     {
         var result = await mediator.Send(new GetAllSpinsQuery());

@@ -15,6 +15,7 @@ namespace LuckyCrush.API.Controllers;
 public class CategoryController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Route("CreateCategory")]
     public async Task<ActionResult<ApiResponse<CategoryDto>>> CreateCategory([FromForm] CreateCategoryCommand command)
     {
         var result = await mediator.Send(command);
@@ -40,6 +41,7 @@ public class CategoryController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
+    [Route("GetAllCategories")]
     public async Task<ActionResult<ApiResponse<IEnumerable<CategoryDto>>>> GetAllCategories()
     {
         var result = await mediator.Send(new GetAllCategoriesQuery());
@@ -64,7 +66,8 @@ public class CategoryController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpPatch("{id:int}")]
+    [HttpPatch]
+    [Route("UpdateCategory/{id:int}")]
     public async Task<ActionResult<ApiResponse>> UpdateCategory([FromRoute] int id, [FromForm] UpdateCategoryCommand command)
     {
         var result = await mediator.Send(command);
@@ -88,7 +91,8 @@ public class CategoryController(IMediator mediator) : ControllerBase
         return BadRequest(failureResponse);
     }
 
-    [HttpDelete("{id:int}")]
+    [HttpDelete]
+    [Route("DeleteCategory/{id:int}")]
     public async Task<ActionResult<ApiResponse>> DeleteCategory([FromRoute] int id)
     {
         var result = await mediator.Send(new DeleteCategoryCommand(id));
