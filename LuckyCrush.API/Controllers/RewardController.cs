@@ -1,4 +1,5 @@
-﻿using LuckyCrush.Application.Rewards.Commands.Create;
+﻿using LuckyCrush.Application.Rewards.Commands.AssignToUser;
+using LuckyCrush.Application.Rewards.Commands.Create;
 using LuckyCrush.Application.Rewards.Commands.Delete;
 using LuckyCrush.Application.Rewards.Commands.Update;
 using LuckyCrush.Application.Rewards.Dtos;
@@ -114,5 +115,30 @@ public class RewardController(IMediator mediator) : ControllerBase
         );
 
         return NotFound(failureResponse);
+    }
+
+    [HttpPost]
+    [Route("AssignRewardToPlayer")]
+    public async Task<ActionResult<ApiResponse>> AssignRewardToPlayer([FromBody] AssignRewardToUserCommand command)
+    {
+        var result = await mediator.Send(command);
+        if (result.IsSuccess)
+        {
+            var response = ApiResponse.Success(
+                message: "Reward assigned to player successfully",
+                statusCode: HttpStatusCode.OK
+            );
+            return Ok(response);
+        }
+
+        var errors = new List<ApiError> { new() { Description = result.Error } };
+
+        var failureResponse = ApiResponse.Failure(
+            errors,
+            "Failed to assign reward to player",
+            HttpStatusCode.BadRequest
+        );
+
+        return BadRequest(failureResponse);
     }
 }

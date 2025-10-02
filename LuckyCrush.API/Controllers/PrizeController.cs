@@ -3,6 +3,7 @@ using LuckyCrush.Application.Prizes.Commands.Delete;
 using LuckyCrush.Application.Prizes.Commands.Update;
 using LuckyCrush.Application.Prizes.Dtos;
 using LuckyCrush.Application.Prizes.Queries.GetAll;
+using LuckyCrush.Application.Wheels.Commands.AssignPrizes;
 using LuckyCrush.Domain.Response;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -110,6 +111,31 @@ public class PrizeController(IMediator mediator) : ControllerBase
         var failureResponse = ApiResponse.Failure(
             errors,
             "Failed to delete prize",
+            HttpStatusCode.BadRequest
+        );
+
+        return BadRequest(failureResponse);
+    }
+
+    [HttpPost]
+    [Route("AssignPrizeToPlayer")]
+    public async Task<ActionResult<ApiResponse>> AssignPrizeToPlayer([FromBody] AssignPrizesCommand command)
+    {
+        var result = await mediator.Send(command);
+        if (result.IsSuccess)
+        {
+            var response = ApiResponse.Success(
+                message: "Prize assigned to player successfully",
+                statusCode: HttpStatusCode.OK
+            );
+            return Ok(response);
+        }
+
+        var errors = new List<ApiError> { new() { Description = result.Error } };
+
+        var failureResponse = ApiResponse.Failure(
+            errors,
+            "Failed to assign prize to player",
             HttpStatusCode.BadRequest
         );
 

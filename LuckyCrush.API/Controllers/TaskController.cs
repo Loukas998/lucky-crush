@@ -1,6 +1,7 @@
 ﻿using LuckyCrush.Application.Matches.Dtos;
 using LuckyCrush.Application.Tasks.Commands.Create;
 using LuckyCrush.Application.Tasks.Commands.Delete;
+using LuckyCrush.Application.Tasks.Commands.TrackUserProgress;
 using LuckyCrush.Application.Tasks.Commands.Update;
 using LuckyCrush.Application.Tasks.Dtos;
 using LuckyCrush.Application.Tasks.Queries.GetAll;
@@ -153,7 +154,35 @@ public class TaskController(IMediator mediator) : ControllerBase
 
         var failureResponse = ApiResponse.Failure(
             errors,
-            "Failed to store match",
+            "Failed to delete match",
+            HttpStatusCode.NotFound
+        );
+
+        return NotFound(failureResponse);
+    }
+
+    [HttpPost]
+    [Route("TrackTaskProgress")]
+    public async Task<ActionResult<ApiResponse>> TrackTaskProgress([FromBody] TrackUserProgressCommand command)
+    {
+        var result = await mediator.Send(command);
+        if (result.IsSuccess)
+        {
+            var response = ApiResponse.Success(
+                message: "Task progress updated",
+                statusCode: HttpStatusCode.OK
+            );
+            return Ok(response);
+        }
+
+        var errors = new List<ApiError>()
+        {
+            new () { Description = result.Error }
+        };
+
+        var failureResponse = ApiResponse.Failure(
+            errors,
+            "Failed to update task progress",
             HttpStatusCode.NotFound
         );
 
