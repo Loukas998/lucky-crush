@@ -4,6 +4,7 @@ using LuckyCrush.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LuckyCrush.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251005110128_AddedCorrelationIdToSpin")]
+    partial class AddedCorrelationIdToSpin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -658,9 +661,6 @@ namespace LuckyCrush.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("PrizeId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("SpinAt")
                         .HasColumnType("datetime(6)");
 
@@ -679,8 +679,6 @@ namespace LuckyCrush.Infrastructure.Migrations
 
                     b.HasIndex("CorrelationId")
                         .IsUnique();
-
-                    b.HasIndex("PrizeId");
 
                     b.HasIndex("UserId");
 
@@ -1133,12 +1131,6 @@ namespace LuckyCrush.Infrastructure.Migrations
 
             modelBuilder.Entity("LuckyCrush.Domain.Entities.Wheels.Spin", b =>
                 {
-                    b.HasOne("LuckyCrush.Domain.Entities.Wheels.Prize", "Prize")
-                        .WithMany("Spins")
-                        .HasForeignKey("PrizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("LuckyCrush.Domain.Entities.Account.User", "User")
                         .WithMany("Spins")
                         .HasForeignKey("UserId")
@@ -1150,8 +1142,6 @@ namespace LuckyCrush.Infrastructure.Migrations
                         .HasForeignKey("WheelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Prize");
 
                     b.Navigation("User");
 
@@ -1342,11 +1332,6 @@ namespace LuckyCrush.Infrastructure.Migrations
             modelBuilder.Entity("LuckyCrush.Domain.Entities.Wheels.Category", b =>
                 {
                     b.Navigation("Prizes");
-                });
-
-            modelBuilder.Entity("LuckyCrush.Domain.Entities.Wheels.Prize", b =>
-                {
-                    b.Navigation("Spins");
                 });
 
             modelBuilder.Entity("LuckyCrush.Domain.Entities.Wheels.Wheel", b =>

@@ -14,7 +14,7 @@ public class TokenRepository(UserManager<User> userManager, IConfiguration confi
 {
     private readonly int _expiresInMinutes =
             Convert.ToInt32(configuration["JwtSettings:DurationInMinutes"]) * 24;
-    private readonly string _loginProvidor = "LuckyCrushTokenProvidor";
+    private readonly string _loginProvidor = "LuckyCrushProvider";
     private readonly string _refreshToken = "RefreshToken";
 
     public async Task<string> CreateRefreshToken(User user)

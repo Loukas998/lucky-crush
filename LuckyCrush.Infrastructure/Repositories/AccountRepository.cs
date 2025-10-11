@@ -43,6 +43,13 @@ public class AccountRepository(UserManager<User> userManager, ApplicationDbConte
         return await userManager.FindByIdAsync(userId);
     }
 
+    public async Task<User?> GetUserWithPrizesAsync(string userId)
+    {
+        return await dbContext.Users
+            .Include(u => u.Prizes)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+    }
+
     public async Task<User?> GetUserWithProgressAsync(string userId)
     {
         return await dbContext.Users
@@ -115,8 +122,7 @@ public class AccountRepository(UserManager<User> userManager, ApplicationDbConte
 
     public async Task<IEnumerable<IdentityError>> RegisterGoogle(User user)
     {
-        var existingUser = await dbContext.Users
-            .FirstOrDefaultAsync(u => u.PhoneNumber == user.PhoneNumber);
+        var existingUser = await userManager.FindByEmailAsync(user.Email);
 
         if (existingUser != null)
         {

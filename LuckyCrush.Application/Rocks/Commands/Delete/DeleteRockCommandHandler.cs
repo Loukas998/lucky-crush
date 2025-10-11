@@ -18,7 +18,7 @@ public class DeleteRockCommandHandler(ILogger<DeleteRockCommandHandler> logger,
         }
 
         // delete image
-        await rockRepository.DeleteAsync(existing);
+        await rockRepository.HardDeleteAsync(existing);
         return Result.Success();
     }
 }

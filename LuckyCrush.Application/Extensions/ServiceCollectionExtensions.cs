@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using LuckyCrush.Application.Users;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -12,11 +13,12 @@ public static class ServiceCollectionExtensions
         var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationAssembly));
+        services.AddHttpContextAccessor();
 
         services.AddValidatorsFromAssembly(applicationAssembly)
                 .AddFluentValidationAutoValidation();
 
         services.AddAutoMapper(applicationAssembly);
-
+        services.AddTransient<IUserContext, UserContext>();
     }
 }

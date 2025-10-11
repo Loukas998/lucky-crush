@@ -183,6 +183,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .WithOne(p => p.Category)
             .HasForeignKey(p => p.CategoryId);
 
+        builder.Entity<Prize>()
+            .HasMany(p => p.Spins)
+            .WithOne(p => p.Prize)
+            .HasForeignKey(s => s.PrizeId);
+
         // Composite Keys
         builder.Entity<Requirement>()
             .HasKey(r => new { r.LevelId, r.RockId });
@@ -192,5 +197,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         builder.Entity<Destruction>()
             .HasKey(d => new { d.RockId, d.MatchId });
+
+        // Index
+        builder.Entity<Spin>()
+            .HasIndex(s => s.CorrelationId)
+            .IsUnique();
     }
 }

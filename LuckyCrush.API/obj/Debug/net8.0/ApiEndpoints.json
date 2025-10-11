@@ -1,21 +1,21 @@
 [
   {
     "ContainingType": "LuckyCrush.API.Controllers.AuthController",
-    "Method": "Register",
-    "RelativePath": "api/Auth/Register",
+    "Method": "Login",
+    "RelativePath": "api/Auth/Login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "command",
-        "Type": "LuckyCrush.Application.Users.Commands.RequestOtp.RequestOtpCommand",
+        "Type": "LuckyCrush.Application.Users.Commands.Login.LoginCommand",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Domain.Response.Result\u00601[[LuckyCrush.Application.Users.Dtos.LoginResponse, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], LuckyCrush.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -27,21 +27,47 @@
   },
   {
     "ContainingType": "LuckyCrush.API.Controllers.AuthController",
-    "Method": "VerifyOtp",
-    "RelativePath": "api/Auth/VerifyOtp",
+    "Method": "RefreshToken",
+    "RelativePath": "api/Auth/RefreshToken",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "command",
-        "Type": "LuckyCrush.Application.Users.Commands.VerifyOtp.VerifyOtpCommand",
+        "Type": "LuckyCrush.Application.Users.Commands.RefreshToken.RefreshTokenCommand",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Domain.Response.Result\u00601[[LuckyCrush.Application.Users.Dtos.LoginResponse, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], LuckyCrush.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/Auth/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "LuckyCrush.Application.Users.Commands.CreateAccount.CreateAccountCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[Microsoft.AspNetCore.Identity.IdentityError, Microsoft.Extensions.Identity.Core, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -470,6 +496,32 @@
   },
   {
     "ContainingType": "LuckyCrush.API.Controllers.PrizeController",
+    "Method": "AssignPrizeToPlayer",
+    "RelativePath": "api/Prize/AssignPrizeToPlayer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "LuckyCrush.Application.Wheels.Commands.AssignPrizes.AssignPrizesCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.PrizeController",
     "Method": "CreatePrize",
     "RelativePath": "api/Prize/CreatePrize",
     "HttpMethod": "POST",
@@ -488,6 +540,11 @@
       },
       {
         "Name": "Amount",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Weight",
         "Type": "System.Int32",
         "IsRequired": false
       },
@@ -592,6 +649,32 @@
         "Name": "Image",
         "Type": "Microsoft.AspNetCore.Http.IFormFile",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.RewardController",
+    "Method": "AssignRewardToPlayer",
+    "RelativePath": "api/Reward/AssignRewardToPlayer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "LuckyCrush.Application.Rewards.Commands.AssignToUser.AssignRewardToUserCommand",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [
@@ -998,6 +1081,32 @@
   },
   {
     "ContainingType": "LuckyCrush.API.Controllers.TaskController",
+    "Method": "TrackTaskProgress",
+    "RelativePath": "api/Task/TrackTaskProgress",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "LuckyCrush.Application.Tasks.Commands.TrackUserProgress.TrackUserProgressCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.TaskController",
     "Method": "UpdateTask",
     "RelativePath": "api/Task/UpdateTask/{id}",
     "HttpMethod": "PATCH",
@@ -1146,6 +1255,66 @@
     "ReturnTypes": [
       {
         "Type": "LuckyCrush.Domain.Response.ApiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.UserController",
+    "Method": "GetPlayerBalance",
+    "RelativePath": "api/User/GetPlayerBalance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Users.Dtos.BalanceDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.UserController",
+    "Method": "GetPlayerPrizes",
+    "RelativePath": "api/User/GetPlayerPrizes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[System.Collections.Generic.IEnumerable\u00601[[LuckyCrush.Application.Prizes.Dtos.PrizeDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LuckyCrush.API.Controllers.UserController",
+    "Method": "GetPlayerProfile",
+    "RelativePath": "api/User/GetPlayerProfile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "LuckyCrush.Domain.Response.ApiResponse\u00601[[LuckyCrush.Application.Users.Dtos.ProfileDto, LuckyCrush.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

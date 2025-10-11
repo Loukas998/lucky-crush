@@ -17,7 +17,7 @@ public class DeletePrizeCommandHandler(ILogger<DeletePrizeCommandHandler> logger
             return Result.Failure("Prize not found");
         }
 
-        await prizeRepository.DeleteAsync(existing);
+        await prizeRepository.HardDeleteAsync(existing);
         return Result.Success();
     }
 }

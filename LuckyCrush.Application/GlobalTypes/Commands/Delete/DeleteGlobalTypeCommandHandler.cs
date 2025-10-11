@@ -18,7 +18,7 @@ public class DeleteGlobalTypeCommandHandler(ILogger<DeleteGlobalTypeCommandHandl
             return Result.Failure("Type not found");
         }
 
-        await globalTypeRepository.DeleteAsync(existing);
+        await globalTypeRepository.HardDeleteAsync(existing);
         return Result.Success();
     }
 }

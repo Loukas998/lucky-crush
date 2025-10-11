@@ -17,7 +17,7 @@ public class DeleteCategoryCommandHandler(ILogger<DeleteCategoryCommandHandler> 
             return Result.Failure("Category not found");
         }
 
-        await categoryRepository.DeleteAsync(existing);
+        await categoryRepository.HardDeleteAsync(existing);
         return Result.Success();
     }
 }

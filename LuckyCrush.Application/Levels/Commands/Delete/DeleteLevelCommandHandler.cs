@@ -17,7 +17,7 @@ public class DeleteLevelCommandHandler(ILogger<DeleteLevelCommandHandler> logger
             return Result.Failure("Level not found");
         }
 
-        await levelRepository.DeleteAsync(level);
+        await levelRepository.HardDeleteAsync(level);
         return Result.Success();
     }
 }

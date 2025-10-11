@@ -36,11 +36,11 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRockRepository, RockRepository>();
         services.AddScoped<ILevelRepository, LevelRepository>();
         services.AddScoped<IMatchRepository, MatchRepository>();
+        services.AddScoped<ITokenRepository, TokenRepository>();
 
         //this for identity and jwt when needed
         services.AddIdentityCore<User>(options =>
         {
-            options.User.RequireUniqueEmail = true;
         })
             .AddRoles<IdentityRole>()
             .AddTokenProvider<DataProtectorTokenProvider<User>>("LuckyCrushProvider")

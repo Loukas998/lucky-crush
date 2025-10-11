@@ -10,7 +10,8 @@ using Microsoft.Extensions.Logging;
 namespace LuckyCrush.Application.Prizes.Commands.Create;
 
 public class CreatePrizeCommandHandler(ILogger<CreatePrizeCommandHandler> logger, IMapper mapper,
-    IPrizeRepository prizeRepository, IFileService fileService) : IRequestHandler<CreatePrizeCommand, Result<PrizeDto>>
+    IPrizeRepository prizeRepository, IFileService fileService, IWheelRepository wheelRepository)
+    : IRequestHandler<CreatePrizeCommand, Result<PrizeDto>>
 {
     public async Task<Result<PrizeDto>> Handle(CreatePrizeCommand request, CancellationToken cancellationToken)
     {
@@ -23,6 +24,18 @@ public class CreatePrizeCommandHandler(ILogger<CreatePrizeCommandHandler> logger
             prize.Image = imagePath;
         }
         var created = await prizeRepository.AddAsync(prize);
+
+        var existingWheel = await wheelRepository.GetWheelWithPrizesAsync(request.WheelId);
+        if (existingWheel == null)
+        {
+            return Result<PrizeDto>.Failure("Wheel not found");
+        }
+
+        if (existingWheel.Prizes.Contains(created))
+        {
+            return Result<PrizeDto>.Failure("Prize already exist");
+        }
+        existingWheel.Prizes.Add(created);
         var result = mapper.Map<PrizeDto>(created);
         return Result<PrizeDto>.Success(result);
     }

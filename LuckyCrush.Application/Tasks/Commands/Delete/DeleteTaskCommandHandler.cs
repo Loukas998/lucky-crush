@@ -20,7 +20,7 @@ public class DeleteTaskCommandHandler(ILogger<DeleteTaskCommandHandler> logger, 
 
         var result = mapper.Map(request, existing);
         existing.Goals.Clear();
-        await taskRepository.DeleteAsync(existing);
+        await taskRepository.HardDeleteAsync(existing);
         return Result.Success();
     }
 }

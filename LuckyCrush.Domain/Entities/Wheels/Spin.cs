@@ -9,6 +9,9 @@ public class Spin
     public User User { get; set; } = default!;
     public int WheelId { get; set; } = default!;
     public Wheel Wheel { get; set; } = default!;
+    public int PrizeId { get; set; } = default!;
+    public Prize Prize { get; set; } = default!;
     public DateTime SpinAt { get; set; }
     public string Type { get; set; } = default!; // Free, Paid
+    public string CorrelationId { get; set; } = default!;
 }

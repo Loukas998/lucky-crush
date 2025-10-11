@@ -17,7 +17,7 @@ public class DeleteUnlockableCommandHandler(ILogger<DeleteUnlockableCommandHandl
             return Result.Failure("Unlockable not found");
         }
 
-        await unlockableRepository.DeleteAsync(existing);
+        await unlockableRepository.HardDeleteAsync(existing);
         return Result.Success();
     }
 }

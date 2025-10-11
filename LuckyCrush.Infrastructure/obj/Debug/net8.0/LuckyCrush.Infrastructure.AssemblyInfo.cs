@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LuckyCrush.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1959f7a27743f82d36c5b4587b74c34a432a05cd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b39d982b7a10a47978f68de6e051192c8abc3632")]
 [assembly: System.Reflection.AssemblyProductAttribute("LuckyCrush.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LuckyCrush.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

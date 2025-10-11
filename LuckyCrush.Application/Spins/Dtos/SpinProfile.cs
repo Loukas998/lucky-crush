@@ -9,6 +9,7 @@ public class SpinProfile : Profile
     public SpinProfile()
     {
         CreateMap<Spin, SpinDto>()
+            .ForMember(dest => dest.Prize, opt => opt.MapFrom(src => src.Prize))
             .ReverseMap();
 
         CreateMap<CreateSpinCommand, Spin>();

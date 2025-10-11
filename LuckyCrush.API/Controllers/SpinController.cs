@@ -3,6 +3,7 @@ using LuckyCrush.Application.Spins.Dtos;
 using LuckyCrush.Application.Spins.Queries.GetAll;
 using LuckyCrush.Domain.Response;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -13,6 +14,7 @@ namespace LuckyCrush.API.Controllers;
 public class SpinController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Authorize]
     [Route("Spin")]
     public async Task<ActionResult<ApiResponse<SpinDto>>> Spin([FromBody] CreateSpinCommand command)
     {

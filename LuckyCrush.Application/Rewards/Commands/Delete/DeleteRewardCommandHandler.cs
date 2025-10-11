@@ -17,7 +17,7 @@ public class DeleteRewardCommandHandler(ILogger<DeleteRewardCommandHandler> logg
             return Result.Failure("Reward");
         }
 
-        await rewardRepository.DeleteAsync(existing);
+        await rewardRepository.HardDeleteAsync(existing);
         return Result.Success();
     }
 }

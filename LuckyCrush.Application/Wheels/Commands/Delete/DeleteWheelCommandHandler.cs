@@ -17,7 +17,7 @@ public class DeleteWheelCommandHandler(ILogger<DeleteWheelCommandHandler> logger
             return Result.Failure("Wheel not found");
         }
 
-        await wheelRepository.DeleteAsync(existing);
+        await wheelRepository.HardDeleteAsync(existing);
         return Result.Success();
     }
 }

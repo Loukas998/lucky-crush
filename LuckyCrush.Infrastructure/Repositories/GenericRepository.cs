@@ -18,7 +18,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return entity;
     }
 
-    public async Task DeleteAsync(T entity)
+    public async Task SoftDeleteAsync(T entity)
     {
         var property = entity.GetType().GetProperty("IsDeleted");
         if (property != null && property.PropertyType == typeof(bool))
@@ -31,6 +31,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         {
             throw new InvalidOperationException($"Entity {typeof(T).Name} Does not Have IsDeleted as a property");
         }
+    }
+
+    public async Task HardDeleteAsync(T entity)
+    {
+        dbContext.Set<T>().Remove(entity);
+        await dbContext.SaveChangesAsync();
     }
 
     public async Task<T?> FindByIdAsync(int id)

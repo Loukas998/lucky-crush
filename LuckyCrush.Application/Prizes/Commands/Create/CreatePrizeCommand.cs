@@ -10,5 +10,6 @@ public class CreatePrizeCommand : IRequest<Result<PrizeDto>>
     public int WheelId { get; set; }
     public int CategoryId { get; set; }
     public int Amount { get; set; }
+    public int Weight { get; set; }
     public IFormFile? Image { get; set; }
 }

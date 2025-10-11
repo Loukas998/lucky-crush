@@ -26,9 +26,9 @@ public class AuthController(IMediator mediator) : ControllerBase
             );
         if (result.Value.Any())
         {
-            return Ok(response);
+            return BadRequest(response);
         }
-        return BadRequest(response);
+        return Ok(response);
     }
 
     [HttpPost(nameof(Login))]

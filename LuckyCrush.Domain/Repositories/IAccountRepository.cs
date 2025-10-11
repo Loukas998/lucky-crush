@@ -17,4 +17,5 @@ public interface IAccountRepository
     public Task<Balance> GetPlayerBalanceAsync(string userId);
     public Task<Profile> GetPlayerProfileAsync(string userId);
     public Task<IEnumerable<Prize>> GetPlayerPrizesAsync(string userId);
+    public Task<User?> GetUserWithPrizesAsync(string userId);
 }

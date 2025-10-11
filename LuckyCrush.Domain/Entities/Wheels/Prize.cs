@@ -12,4 +12,5 @@ public class Prize
     public Category Category { get; set; } = default!;
     public int Amount { get; set; }
     public List<User> Users { get; set; } = [];
+    public List<Spin> Spins { get; set; } = [];
 }

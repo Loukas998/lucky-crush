@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LuckyCrush.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d151997b78c0d9ab8e7b54178b7520b4b3c61596")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b39d982b7a10a47978f68de6e051192c8abc3632")]
 [assembly: System.Reflection.AssemblyProductAttribute("LuckyCrush.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LuckyCrush.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
